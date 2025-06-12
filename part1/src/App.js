@@ -23,37 +23,37 @@ const Content = (props) => {
   )
 }
 
-const Total = ({ exercises1, exercises2, exercises3 }) => {
-  console.log({ exercises1, exercises2, exercises3 })
-  return <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+const Total = ({ parts }) => {
+  console.log({ parts })
+  const total = parts.reduce((sum, part) => sum + part.exercises, 0)
+
+  return <p>Number of exercises {total}</p>
 }
 
 export const App = () => {
   const course = 'Desenvolvimento de aplicação Half Stack'
 
-  const part1 = {
-    name: 'Fundamentos da biblioteca React',
-    exercises: 10,
-  }
-  const part2 = {
-    name: 'Usando props para passar dados',
-    exercises: 7,
-  }
-  const part3 = {
-    name: 'Estado de um componente',
-    exercises: 14,
-  }
+  const parts = [
+    {
+      name: 'Fundamentos da biblioteca React',
+      exercises: 10,
+    },
+    {
+      name: 'Usando props para passar dados',
+      exercises: 7,
+    },
+    {
+      name: 'Estado de um componente',
+      exercises: 14,
+    },
+  ]
 
   return (
     <div>
       <Header course={course} />
-      <Content parts={{ part1, part2, part3 }} />
+      <Content parts={parts} />
 
-      <Total
-        exercises1={part1.exercises}
-        exercises2={part2.exercises}
-        exercises3={part3.exercises}
-      />
+      <Total parts={parts} />
     </div>
   )
 }
