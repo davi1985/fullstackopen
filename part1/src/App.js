@@ -7,7 +7,7 @@ const Part = (props) => {
   console.log(props)
   return (
     <p>
-      {props.part} {props.exercisesNumber}
+      {props.part.name} {props.part.exercises}
     </p>
   )
 }
@@ -16,9 +16,9 @@ const Content = (props) => {
   console.log(props)
   return (
     <>
-      <Part part={props.parts.part1} exercisesNumber={props.parts.exercises1} />
-      <Part part={props.parts.part2} exercisesNumber={props.parts.exercises2} />
-      <Part part={props.parts.part3} exercisesNumber={props.parts.exercises3} />
+      {props.parts.map((part) => (
+        <Part key={part.name} part={part} />
+      ))}
     </>
   )
 }
@@ -52,7 +52,6 @@ export const App = () => {
     <div>
       <Header course={course} />
       <Content parts={parts} />
-
       <Total parts={parts} />
     </div>
   )
