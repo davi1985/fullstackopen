@@ -1,5 +1,5 @@
 {
-  "name": "part1",
+  "name": "anecdotes",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,6 +37,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.37.5"
+    "eslint-config-react-app": "^7.0.1"
   }
 }
