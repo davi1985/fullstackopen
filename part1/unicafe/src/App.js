@@ -6,12 +6,12 @@ const StatisticLine = (props) => (
   </p>
 )
 
-const Button = (props) => (
-  <button onClick={props.handleGood}>{props.label}</button>
-)
+const Button = (props) => <button onClick={props.onClick}>{props.label}</button>
 
 const Statistics = (props) => {
   const noFeedbacks = props.good === 0 && props.neutral === 0 && props.bad === 0
+
+  const columnHeaders = ['good', 'neutral', 'bad', 'average', 'positive']
 
   if (noFeedbacks) {
     return <p>No feedback given</p>
@@ -25,7 +25,6 @@ const Statistics = (props) => {
         <StatisticLine value={props.neutral} text="neutral" />
         <StatisticLine value={props.bad} text="bad" />
         <StatisticLine value={props.total} text="total" />
-
         <StatisticLine
           value={props.results.average.toFixed(2)}
           text="average"
@@ -35,6 +34,23 @@ const Statistics = (props) => {
           text="positive"
         />
       </div>
+
+      <table>
+        <tr>
+          {columnHeaders.map((column) => (
+            <th key={column}>{column}</th>
+          ))}
+        </tr>
+
+        <tr>
+          <td>{props.good}</td>
+          <td>{props.neutral}</td>
+          <td>{props.bad}</td>
+          <td>{props.all}</td>
+          <td>{props.results.average.toFixed(2)}</td>
+          <td>{props.results.positiveFeedback.toFixed(2)}%</td>
+        </tr>
+      </table>
     </>
   )
 }
